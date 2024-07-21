@@ -7,8 +7,8 @@ static class Program
         MazeBuilder maze = new MazeBuilder(
             tileSize: (width: 25, height: 25),
             borderWidth: 1,
-            columns: 500,
-            rows: 500
+            columns: 20,
+            rows: 10000
         );
     }
 }
