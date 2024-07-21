@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "tninxN5B1RA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\durim\\Documents\\MazeMaker\\MazeMaker\\MazeMaker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\durim\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\durim\\.nuget\\packages\\system.drawing.common\\8.0.7\\system.drawing.common.8.0.7.nupkg.sha512"
+  ],
+  "logs": []
+}

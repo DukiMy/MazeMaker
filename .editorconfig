@@ -1,0 +1,11 @@
+# Suppress specific warnings
+# [*.cs]
+# dotnet_diagnostic.CSxxxx.severity = none
+
+# # Example: Suppress warning CS0168 (variable declared but never used)
+# [*.cs]
+# dotnet_diagnostic.CS0168.severity = none
+
+# Suppress all warnings
+[*.cs]
+dotnet_analyzer_diagnostic.severity = none
