@@ -40,7 +40,7 @@ public class MazeBuilder
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                new WestSouthTile(
+                new Tile(
                     fillColor: ColorTranslator.FromHtml("#444444"),
                     xOrigin: (UInt16)((_tileSize.width - _borderWidth)*col),
                     yOrigin: (UInt16)((_tileSize.height - _borderWidth)*row),

@@ -3,7 +3,7 @@ using System.Drawing;
 using static MazeMaker.TileSettings;
 namespace MazeMaker;
 
-public struct WestSouthTile : ITile
+public struct Tile : ITile
 {
     public Color FillColor => _fillColor;
     public UInt16 XOrigin => _xOrigin;
@@ -14,15 +14,13 @@ public struct WestSouthTile : ITile
     private readonly UInt16 _yOrigin;
     private readonly SolidBrush _brush;
 
-    // Instance constructor
-    public WestSouthTile(
+    public Tile(
         Color fillColor,
         UInt16 xOrigin,
         UInt16 yOrigin,
         OpenWall walls
     )
     {
-        // Set instance variables
         _fillColor = fillColor;
         _brush = new SolidBrush(fillColor);
         _xOrigin = xOrigin;
