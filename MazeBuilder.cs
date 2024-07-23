@@ -7,7 +7,7 @@ public class MazeBuilder
     private readonly UInt16 _colMax;
     private readonly UInt16 _borderWidth;
     private readonly (UInt16 width, UInt16 height) _tileSize;
-    private ITile[,] _maze;
+    private byte[,] _maze;
 
     public MazeBuilder(
         (UInt16 width, UInt16 height) tileSize,
@@ -30,20 +30,35 @@ public class MazeBuilder
             height: _tileSize.height,
             borderWidth: _borderWidth
         );
-
+        ScaffoldMaze();
         BuildMaze();
         SaveMaze();
     }
 
+    private byte[,] ScaffoldMaze()
+    {
+        _maze = new byte[_colMax, _rowMax];
+
+        for (int col = 0; col < _colMax; col++)
+        {
+            for (int row = 0; row < _rowMax; row++)
+            {
+                _maze[col, row] = (byte)OpenWall.North;
+            }
+        }
+
+        return _maze;
+    }
+
     private void BuildMaze()
     {
-        _maze = new ITile[_colMax, _rowMax];
+        _maze = new byte[_colMax, _rowMax];
 
         for (int col = 0; col <= _colMax; col++)
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                _maze[col, row] = new MazeTile(
+                new MazeTile(
                     fillColor: ColorTranslator.FromHtml("#444444"),
                     xOrigin: (UInt16)((_tileSize.width - _borderWidth)*col),
                     yOrigin: (UInt16)((_tileSize.height - _borderWidth)*row),
