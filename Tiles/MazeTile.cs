@@ -33,18 +33,22 @@ public struct MazeTile : ITile
     {
         if ((wallMask & OpenWall.North) != 0)
         {
+            Console.WriteLine("Opening North Wall");
             OpenNorthWall();
         }
         if ((wallMask & OpenWall.East) != 0)
         {
+            Console.WriteLine("Opening East Wall");
             OpenEastWall();
         }
         if ((wallMask & OpenWall.South) != 0)
         {
+            Console.WriteLine("Opening South Wall");
             OpenSouthWall();
         }
         if ((wallMask & OpenWall.West) != 0)
         {
+            Console.WriteLine("Opening West Wall");
             OpenWestWall();
         }
     }

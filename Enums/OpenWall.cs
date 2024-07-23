@@ -3,11 +3,11 @@ namespace MazeMaker
     [Flags]
     public enum OpenWall : byte
     {
-        None = 0,
+        None =  0,
         North = 0b_0001,
-        East = 0b_0010,
+        East =  0b_0010,
         South = 0b_0100,
-        West = 0b_1000,
+        West =  0b_1000,
         NorthEast = North | East,
         NorthWest = North | West,
         SouthEast = South | East,

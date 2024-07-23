@@ -34,6 +34,21 @@ public class MazeBuilder
         SetupMaze();
         BuildMaze();
         SaveMaze();
+        Console.WriteLine($"All: \t\t{ToBytecode((byte)OpenWall.All)}");
+        Console.WriteLine($"None: \t\t{ToBytecode((byte)OpenWall.None)}");
+        Console.WriteLine($"Top: \t\t{ToBytecode((byte)OpenWall.North)}");
+        Console.WriteLine($"Right: \t\t{ToBytecode((byte)OpenWall.East)}");
+        Console.WriteLine($"Bottom: \t{ToBytecode((byte)OpenWall.South)}");
+        Console.WriteLine($"Left: \t\t{ToBytecode((byte)OpenWall.West)}");
+        Console.WriteLine($"TopRight: \t{ToBytecode((byte)OpenWall.NorthEast)}");
+        Console.WriteLine($"TopLeft: \t{ToBytecode((byte)OpenWall.NorthWest)}");
+        Console.WriteLine($"BottomRight: \t{ToBytecode((byte)OpenWall.SouthEast)}");
+        Console.WriteLine($"BottomLeft: \t{ToBytecode((byte)OpenWall.SouthWest)}");
+    }
+
+    static string ToBytecode(byte b)
+    {
+        return Convert.ToString(b, 2).PadLeft(8, '0');
     }
 
     private void SetupMaze()
@@ -44,7 +59,7 @@ public class MazeBuilder
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                _maze[col, row] = OpenWall.North;
+                _maze[col, row] = OpenWall.All;
             }
         }
     }
@@ -56,9 +71,9 @@ public class MazeBuilder
             for (int row = 0; row < _rowMax; row++)
             {
                 new MazeTile(
-                    fillColor: ColorTranslator.FromHtml("#444444"),
-                    xOrigin: (UInt16)((_tileSize.width - _borderWidth)*col),
-                    yOrigin: (UInt16)((_tileSize.height - _borderWidth)*row),
+                    fillColor: ColorTranslator.FromHtml("#888888"),
+                    xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*col),
+                    yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*row),
                     walls: _maze[col, row]
                 );
             }
@@ -110,8 +125,8 @@ public class MazeBuilder
         Console.WriteLine($"\n\nCanvas size: {canvasWidth}x{canvasHeight}\n\n");
         
         return (
-            canvasWidth,
-            canvasHeight
+            (UInt16)(canvasWidth + 1),
+            (UInt16)(canvasHeight + 1)
         );
     }
 }
