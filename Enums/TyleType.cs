@@ -1,7 +1,7 @@
 namespace MazeMaker
 {
     [Flags]
-    public enum OpenWall : byte
+    public enum TileType : byte
     {
         None =  0,
         North = 0b_0001,
