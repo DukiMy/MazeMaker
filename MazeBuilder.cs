@@ -30,12 +30,13 @@ public class MazeBuilder
             height: _tileSize.height,
             borderWidth: _borderWidth
         );
-        ScaffoldMaze();
+        
+        SetupMaze();
         BuildMaze();
         SaveMaze();
     }
 
-    private byte[,] ScaffoldMaze()
+    private void SetupMaze()
     {
         _maze = new byte[_colMax, _rowMax];
 
@@ -46,8 +47,6 @@ public class MazeBuilder
                 _maze[col, row] = (byte)OpenWall.North;
             }
         }
-
-        return _maze;
     }
 
     private void BuildMaze()
