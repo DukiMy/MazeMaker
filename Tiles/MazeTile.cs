@@ -3,7 +3,7 @@ using System.Drawing;
 using static MazeMaker.TileSettings;
 namespace MazeMaker;
 
-public struct Tile : ITile
+public struct MazeTile : ITile
 {
     public Color FillColor => _fillColor;
     public UInt16 XOrigin => _xOrigin;
@@ -14,7 +14,7 @@ public struct Tile : ITile
     private readonly UInt16 _yOrigin;
     private readonly SolidBrush _brush;
 
-    public Tile(
+    public MazeTile(
         Color fillColor,
         UInt16 xOrigin,
         UInt16 yOrigin,
