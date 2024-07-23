@@ -34,16 +34,7 @@ public class MazeBuilder
         SetupMaze();
         BuildMaze();
         SaveMaze();
-        Console.WriteLine($"All: \t\t{ToBytecode((byte)OpenWall.All)}");
-        Console.WriteLine($"None: \t\t{ToBytecode((byte)OpenWall.None)}");
-        Console.WriteLine($"Top: \t\t{ToBytecode((byte)OpenWall.North)}");
-        Console.WriteLine($"Right: \t\t{ToBytecode((byte)OpenWall.East)}");
-        Console.WriteLine($"Bottom: \t{ToBytecode((byte)OpenWall.South)}");
-        Console.WriteLine($"Left: \t\t{ToBytecode((byte)OpenWall.West)}");
-        Console.WriteLine($"TopRight: \t{ToBytecode((byte)OpenWall.NorthEast)}");
-        Console.WriteLine($"TopLeft: \t{ToBytecode((byte)OpenWall.NorthWest)}");
-        Console.WriteLine($"BottomRight: \t{ToBytecode((byte)OpenWall.SouthEast)}");
-        Console.WriteLine($"BottomLeft: \t{ToBytecode((byte)OpenWall.SouthWest)}");
+
     }
 
     static string ToBytecode(byte b)
@@ -63,6 +54,8 @@ public class MazeBuilder
             }
         }
     }
+
+    
 
     private void BuildMaze()
     {
