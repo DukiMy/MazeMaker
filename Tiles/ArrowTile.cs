@@ -21,34 +21,34 @@ public struct ArrowTile : ITile
         Color fillColor,
         UInt16 xOrigin,
         UInt16 yOrigin,
-        TileType walls
+        TileType tileMask
     )
     {
         _fillColor = fillColor;
+        _xOrigin = xOrigin;
+        _yOrigin = yOrigin;
         _brush = new SolidBrush(fillColor);
         _pen = new Pen(Color.Red, BorderWidth);
         _symbolBrush = new SolidBrush(Color.White);
-        _xOrigin = xOrigin;
-        _yOrigin = yOrigin;
         DrawFloor();
-        DrawTiles(walls);
+        DrawTiles(tileMask);
     }
 
-    public void DrawTiles(TileType wallMask)
+    public void DrawTiles(TileType tileMask)
     {
-        if ((wallMask & TileType.North) != 0)
+        if ((tileMask & TileType.North) != 0)
         {
             NorthArrow();
         }
-        if ((wallMask & TileType.East) != 0)
+        if ((tileMask & TileType.East) != 0)
         {
             EastArrow();
         }
-        if ((wallMask & TileType.South) != 0)
+        if ((tileMask & TileType.South) != 0)
         {
             SouthArrow();
         }
-        if ((wallMask & TileType.West) != 0)
+        if ((tileMask & TileType.West) != 0)
         {
             WestArrow();
         }

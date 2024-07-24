@@ -9,6 +9,7 @@ public static class TileSettings
     public static Color BorderColor { get; private set; }
     public static (UInt16 width, UInt16 height) TileSize { get; set; }
     public static UInt16 BorderWidth { get; private set; }
+    public static UInt128 NumberTileSign { get; set; }
 
     public static void Initialize(
         Color baseColor,

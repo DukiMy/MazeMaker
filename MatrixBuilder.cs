@@ -26,7 +26,7 @@ public class MatrixBuilder
             tileSize: _tileSize,
             borderWidth: _borderWidth
         );
-        
+
         SetupMatrix();
         BuildMatrix();
         SaveMatrix();
@@ -51,11 +51,11 @@ public class MatrixBuilder
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                new ArrowTile(
+                new NumberTile(
                     fillColor: ColorTranslator.FromHtml("#888888"),
                     xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*col),
                     yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*row),
-                    walls: _matrix[col, row]
+                    tileMask: _matrix[col, row]
                 );
             }
         }

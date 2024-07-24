@@ -25,21 +25,21 @@ public struct MazeTile : ITile
         DrawTiles(walls);
     }
 
-    public void DrawTiles(TileType wallMask)
+    private void DrawTiles(TileType tileMask)
     {
-        if ((wallMask & TileType.North) != 0)
+        if ((tileMask & TileType.North) != 0)
         {
             OpenNorthWall();
         }
-        if ((wallMask & TileType.East) != 0)
+        if ((tileMask & TileType.East) != 0)
         {
             OpenEastWall();
         }
-        if ((wallMask & TileType.South) != 0)
+        if ((tileMask & TileType.South) != 0)
         {
             OpenSouthWall();
         }
-        if ((wallMask & TileType.West) != 0)
+        if ((tileMask & TileType.West) != 0)
         {
             OpenWestWall();
         }
