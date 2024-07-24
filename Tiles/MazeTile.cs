@@ -9,23 +9,19 @@ public struct MazeTile : ITile
     public UInt16 XOrigin => _xOrigin;
     public UInt16 YOrigin => _yOrigin;
 
+    private readonly SolidBrush _brush;
     private readonly Color _fillColor;
     private readonly UInt16 _xOrigin;
     private readonly UInt16 _yOrigin;
-    private readonly SolidBrush _brush;
 
-    public MazeTile(
-        Color fillColor,
-        UInt16 xOrigin,
-        UInt16 yOrigin,
-        TileType walls
-    )
+    public MazeTile(Color fillColor, UInt16 xOrigin, UInt16 yOrigin, TileType walls)
     {
         _fillColor = fillColor;
         _brush = new SolidBrush(fillColor);
         _xOrigin = xOrigin;
         _yOrigin = yOrigin;
-        Draw();
+
+        DrawFloor();
         DrawTiles(walls);
     }
 
@@ -93,7 +89,7 @@ public struct MazeTile : ITile
         );
     }
 
-    private void Draw()
+    private void DrawFloor()
     {
         Pen pen = new Pen(BorderColor, BorderWidth);
 
@@ -114,23 +110,5 @@ public struct MazeTile : ITile
             width:  TileSize.width - BorderWidth * 2,
             height: TileSize.height - BorderWidth * 2
         );
-        
-        // Forward slash
-        // g.DrawLine(
-        //     pen:    new Pen(Color.Orange, 1),
-        //     x1:     _xOrigin,
-        //     y1:     _yOrigin,
-        //     x2:     _xOrigin + Width - 1,
-        //     y2:     _yOrigin + Height - 1
-        // );
-
-        // Backward slash
-        // g.DrawLine(
-        //     pen:    new Pen(Color.Orange, 1),
-        //     x1:     _xOrigin + Width - 1,
-        //     y1:     _yOrigin,
-        //     x2:     _xOrigin,
-        //     y2:     _yOrigin + Height - 1
-        // );
     }
 }
