@@ -30,11 +30,11 @@ public struct ArrowTile : ITile
         _symbolBrush = new SolidBrush(Color.White);
         _xOrigin = xOrigin;
         _yOrigin = yOrigin;
-        Draw();
-        DrawWalls(walls);
+        DrawFloor();
+        DrawTiles(walls);
     }
 
-    public void DrawWalls(TileType wallMask)
+    public void DrawTiles(TileType wallMask)
     {
         if ((wallMask & TileType.North) != 0)
         {
@@ -49,10 +49,6 @@ public struct ArrowTile : ITile
             SouthArrow();
         }
         if ((wallMask & TileType.West) != 0)
-        {
-            WestArrow();
-        }
-        if ((wallMask & TileType.NorthEast) != 0)
         {
             WestArrow();
         }
@@ -79,43 +75,8 @@ public struct ArrowTile : ITile
             new PointF(x0, y0)
         };
 
-        g!.FillPolygon(
-            brush: _symbolBrush,
-            points: points
-        );
-    }
 
-    private void NorthEastArrow()
-    {
-        // Arrow bow point
-        float x0 = _xOrigin + Width / 2;
-        float y0 = _yOrigin + Height / 6;
-
-        // Arrow port point
-        float x1 = _xOrigin + Width / 6;
-        float y1 = _yOrigin + Height / 2;
-
-        // Arrow starboard point
-        float x2 = _xOrigin + Width - (Width / 6);
-        float y2 = _yOrigin + Height / 2;
-
-        PointF[] points = new PointF[]
-        {
-            new PointF(x0, y0),
-            new PointF(x1, y1),
-            new PointF(x2, y2),
-            new PointF(x0, y0)
-        };
-
-        g!.FillPolygon(
-            brush: _symbolBrush,
-            points: points
-        );
-
-        g.DrawPolygon(
-            pen: _pen,
-            points: points
-        );
+        DrawSymbol(points);
     }
 
     private void EastArrow()
@@ -140,20 +101,12 @@ public struct ArrowTile : ITile
             new PointF(x0, y0)
         };
 
-        g!.FillPolygon(
-            brush: _symbolBrush,
-            points: points
-        );
 
-        g.DrawPolygon(
-            pen: _pen,
-            points: points
-        );
+        DrawSymbol(points);
     }
 
     private void SouthArrow()
     {   
-        Console.WriteLine($"Entered the arrow south method");
         // Arrow bow point
         float x0 = _xOrigin + Width / 2;
         float y0 = _yOrigin + Height - (Height / 6);
@@ -174,20 +127,12 @@ public struct ArrowTile : ITile
             new PointF(x0, y0)
         };
 
-        g!.FillPolygon(
-            brush: _symbolBrush,
-            points: points
-        );
 
-        g.DrawPolygon(
-            pen: _pen,
-            points: points
-        );
+        DrawSymbol(points);
     }
 
     private void WestArrow()
     {   
-        Console.WriteLine($"Entered the arrow south method");
         // Arrow bow point
         float x0 = _xOrigin + Width / 6;
         float y0 = _yOrigin + Height / 2;
@@ -208,15 +153,7 @@ public struct ArrowTile : ITile
             new PointF(x0, y0)
         };
 
-        g!.FillPolygon(
-            brush: _symbolBrush,
-            points: points
-        );
-
-        g.DrawPolygon(
-            pen: _pen,
-            points: points
-        );
+        DrawSymbol(points);
     }
 
     private void CoolRocketArrows()
@@ -251,7 +188,20 @@ public struct ArrowTile : ITile
         );
     }
 
-    private void Draw()
+    private void DrawSymbol(PointF[] points)
+    {
+        g!.FillPolygon(
+            brush: _symbolBrush,
+            points: points
+        );
+
+        g.DrawPolygon(
+            pen: _pen,
+            points: points
+        );
+    }
+    
+    private void DrawFloor()
     {
         Pen pen = new Pen(BorderColor, BorderWidth);
 
@@ -272,23 +222,5 @@ public struct ArrowTile : ITile
             width:  Width - BorderWidth * 2,
             height: Height - BorderWidth * 2
         );
-        
-        // Forward slash
-        // g.DrawLine(
-        //     pen:    new Pen(Color.Orange, 1),
-        //     x1:     _xOrigin,
-        //     y1:     _yOrigin,
-        //     x2:     _xOrigin + Width - 1,
-        //     y2:     _yOrigin + Height - 1
-        // );
-
-        // Backward slash
-        // g.DrawLine(
-        //     pen:    new Pen(Color.Orange, 1),
-        //     x1:     _xOrigin + Width - 1,
-        //     y1:     _yOrigin,
-        //     x2:     _xOrigin,
-        //     y2:     _yOrigin + Height - 1
-        // );
     }
 }
