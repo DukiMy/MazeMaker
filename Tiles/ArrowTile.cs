@@ -56,16 +56,16 @@ public struct ArrowTile : ITile
     private void NorthArrow()
     {   
         // Arrow bow point
-        float x0 = _xOrigin + Width / 2;
-        float y0 = _yOrigin + Height / 6;
+        float x0 = _xOrigin + TileSize.width / 2;
+        float y0 = _yOrigin + TileSize.height / 6;
 
         // Arrow port point
-        float x1 = _xOrigin + Width / 6;
-        float y1 = _yOrigin + Height / 2;
+        float x1 = _xOrigin + TileSize.width / 6;
+        float y1 = _yOrigin + TileSize.height / 2;
 
         // Arrow starboard point
-        float x2 = _xOrigin + Width - (Width / 6);
-        float y2 = _yOrigin + Height / 2;
+        float x2 = _xOrigin + TileSize.width - (TileSize.width / 6);
+        float y2 = _yOrigin + TileSize.height / 2;
 
         PointF[] points = new PointF[]
         {
@@ -82,16 +82,16 @@ public struct ArrowTile : ITile
     private void EastArrow()
     {
         // Arrow bow point
-        float x0 = _xOrigin + Width - (Width / 6);
-        float y0 = _yOrigin + Height / 2;
+        float x0 = _xOrigin + TileSize.width - (TileSize.width / 6);
+        float y0 = _yOrigin + TileSize.height / 2;
 
         // Arrow port point
-        float x1 = _xOrigin + Width / 2;
-        float y1 = _yOrigin + Height - (Height / 6);
+        float x1 = _xOrigin + TileSize.width / 2;
+        float y1 = _yOrigin + TileSize.height - (TileSize.height / 6);
 
         // Arrow starboard point
-        float x2 = _xOrigin + Width / 2;
-        float y2 = _yOrigin + Height / 6;
+        float x2 = _xOrigin + TileSize.width / 2;
+        float y2 = _yOrigin + TileSize.height / 6;
 
         PointF[] points = new PointF[]
         {
@@ -108,16 +108,16 @@ public struct ArrowTile : ITile
     private void SouthArrow()
     {   
         // Arrow bow point
-        float x0 = _xOrigin + Width / 2;
-        float y0 = _yOrigin + Height - (Height / 6);
+        float x0 = _xOrigin + TileSize.width / 2;
+        float y0 = _yOrigin + TileSize.height - (TileSize.height / 6);
 
         // Arrow port point
-        float x1 = _xOrigin + Width / 6;
-        float y1 = _yOrigin + Height / 2;
+        float x1 = _xOrigin + TileSize.width / 6;
+        float y1 = _yOrigin + TileSize.height / 2;
 
         // Arrow starboard point
-        float x2 = _xOrigin + Width - (Width / 6);
-        float y2 = _yOrigin + Height / 2;
+        float x2 = _xOrigin + TileSize.width - (TileSize.width / 6);
+        float y2 = _yOrigin + TileSize.height / 2;
 
         PointF[] points = new PointF[]
         {
@@ -127,23 +127,22 @@ public struct ArrowTile : ITile
             new PointF(x0, y0)
         };
 
-
         DrawSymbol(points);
     }
 
     private void WestArrow()
     {   
         // Arrow bow point
-        float x0 = _xOrigin + Width / 6;
-        float y0 = _yOrigin + Height / 2;
+        float x0 = _xOrigin + TileSize.width / 6;
+        float y0 = _yOrigin + TileSize.height / 2;
 
         // Arrow port point
-        float x1 = _xOrigin + Width / 2;
-        float y1 = _yOrigin + Height - (Height / 6);
+        float x1 = _xOrigin + TileSize.width / 2;
+        float y1 = _yOrigin + TileSize.height - (TileSize.height / 6);
 
         // Arrow starboard point
-        float x2 = _xOrigin + Width / 2;
-        float y2 = _yOrigin + Height / 6;
+        float x2 = _xOrigin + TileSize.width / 2;
+        float y2 = _yOrigin + TileSize.height / 6;
 
         PointF[] points = new PointF[]
         {
@@ -158,20 +157,20 @@ public struct ArrowTile : ITile
 
     private void CoolRocketArrows()
     {
-        float x0 = _xOrigin + Width / 2;
-        float y0 = _yOrigin + Height - Height / 6;
+        float x0 = _xOrigin + TileSize.width / 2;
+        float y0 = _yOrigin + TileSize.height - TileSize.height / 6;
         
-        float x1 = _xOrigin + Width / 2;
-        float y1 = Height / 6;
+        float x1 = _xOrigin + TileSize.width / 2;
+        float y1 = TileSize.height / 6;
 
-        float x2 = _xOrigin + Width / 6;
-        float y2 = _yOrigin + Height / 2;
+        float x2 = _xOrigin + TileSize.width / 6;
+        float y2 = _yOrigin + TileSize.height / 2;
 
-        float x3 = _xOrigin + Width - (Width / 6);
-        float y3 = _yOrigin + Height / 2;
+        float x3 = _xOrigin + TileSize.width - (TileSize.width / 6);
+        float y3 = _yOrigin + TileSize.height / 2;
 
-        float x4 = _xOrigin + Width / 2;
-        float y4 = Height / 6;
+        float x4 = _xOrigin + TileSize.width / 2;
+        float y4 = TileSize.height / 6;
 
         PointF[] points = new PointF[]
         {
@@ -210,8 +209,8 @@ public struct ArrowTile : ITile
             brush:    new SolidBrush(Color.Black),
             x:      _xOrigin,
             y:      _yOrigin,
-            width:  Width,
-            height: Height
+            width:  TileSize.width,
+            height: TileSize.height
         );
 
         // Floor
@@ -219,8 +218,8 @@ public struct ArrowTile : ITile
             brush:  _brush,
             x:      _xOrigin + BorderWidth,
             y:      _yOrigin + BorderWidth,
-            width:  Width - BorderWidth * 2,
-            height: Height - BorderWidth * 2
+            width:  TileSize.width - BorderWidth * 2,
+            height: TileSize.height - BorderWidth * 2
         );
     }
 }

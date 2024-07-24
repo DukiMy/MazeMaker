@@ -4,7 +4,7 @@ static class Program
 {
     static void Main()
     {
-        MazeBuilder maze = new MazeBuilder(
+        MatrixBuilder matrix = new MatrixBuilder(
             tileSize: (width: 250, height: 250),
             borderWidth: 4,
             columns: 25,

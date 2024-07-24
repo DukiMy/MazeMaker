@@ -55,7 +55,7 @@ public struct MazeTile : ITile
             brush: _brush,
             x:     _xOrigin + BorderWidth,
             y:     _yOrigin,
-            width:  Width - BorderWidth * 2,
+            width:  TileSize.width - BorderWidth * 2,
             height: BorderWidth
         );
     }
@@ -64,10 +64,10 @@ public struct MazeTile : ITile
     {
         g!.FillRectangle(
             brush:  _brush,
-            x:      _xOrigin + Width - BorderWidth,
+            x:      _xOrigin + TileSize.width - BorderWidth,
             y:      _yOrigin + BorderWidth,
             width:  BorderWidth,
-            height: Height - BorderWidth * 2
+            height: TileSize.width - BorderWidth * 2
         );
     }
 
@@ -76,8 +76,8 @@ public struct MazeTile : ITile
         g!.FillRectangle(
             brush: _brush,
             x:     _xOrigin + BorderWidth,
-            y:     _yOrigin + Height - BorderWidth,
-            width:  Width - BorderWidth * 2,
+            y:     _yOrigin + TileSize.width - BorderWidth,
+            width:  TileSize.width - BorderWidth * 2,
             height: BorderWidth
         );
     }
@@ -89,7 +89,7 @@ public struct MazeTile : ITile
             x:      _xOrigin,
             y:      _yOrigin + BorderWidth,
             width:  BorderWidth,
-            height: Height - BorderWidth * 2
+            height: TileSize.width - BorderWidth * 2
         );
     }
 
@@ -102,8 +102,8 @@ public struct MazeTile : ITile
             brush:    new SolidBrush(Color.Black),
             x:      _xOrigin,
             y:      _yOrigin,
-            width:  Width,
-            height: Height
+            width:  TileSize.width,
+            height: TileSize.height
         );
 
         // Floor
@@ -111,8 +111,8 @@ public struct MazeTile : ITile
             brush:  _brush,
             x:      _xOrigin + BorderWidth,
             y:      _yOrigin + BorderWidth,
-            width:  Width - BorderWidth * 2,
-            height: Height - BorderWidth * 2
+            width:  TileSize.width - BorderWidth * 2,
+            height: TileSize.height - BorderWidth * 2
         );
         
         // Forward slash

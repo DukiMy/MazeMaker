@@ -2,20 +2,15 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 namespace MazeMaker;
-public class MazeBuilder
+public class MatrixBuilder
 {
     private readonly UInt16 _rowMax;
     private readonly UInt16 _colMax;
     private readonly UInt16 _borderWidth;
     private readonly (UInt16 width, UInt16 height) _tileSize;
-    private TileType[,] _maze;
+    private TileType[,] _matrix;
 
-    public MazeBuilder(
-        (UInt16 width, UInt16 height) tileSize,
-        UInt16 borderWidth,
-        UInt16 columns,
-        UInt16 rows
-    )
+    public MatrixBuilder((UInt16 width, UInt16 height) tileSize, UInt16 borderWidth, UInt16 columns, UInt16 rows)
     {
         _tileSize = tileSize;
         _borderWidth = borderWidth;
@@ -26,37 +21,31 @@ public class MazeBuilder
         TileSettings.bmp = new Bitmap(canvasSize.width, canvasSize.height);
 
         TileSettings.Initialize(
+            baseColor: ColorTranslator.FromHtml("#323232"),
             borderColor: Color.Black,
-            width: _tileSize.width,
-            height: _tileSize.height,
+            tileSize: _tileSize,
             borderWidth: _borderWidth
         );
         
-        SetupMaze();
-        BuildMaze();
-        SaveMaze();
-
+        SetupMatrix();
+        BuildMatrix();
+        SaveMatrix();
     }
 
-    static string ToBytecode(byte b)
+    private void SetupMatrix()
     {
-        return Convert.ToString(b, 2).PadLeft(8, '0');
-    }
-
-    private void SetupMaze()
-    {
-        _maze = new TileType[_colMax, _rowMax];
+        _matrix = new TileType[_colMax, _rowMax];
 
         for (int col = 0; col < _colMax; col++)
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                _maze[col, row] = GetRandomEnumValue<TileType>();
+                _matrix[col, row] = GetRandomEnumValue<TileType>();
             }
         }
     }
 
-    private void BuildMaze()
+    private void BuildMatrix()
     {
         for (int col = 0; col < _colMax; col++)
         {
@@ -66,29 +55,29 @@ public class MazeBuilder
                     fillColor: ColorTranslator.FromHtml("#888888"),
                     xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*col),
                     yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*row),
-                    walls: _maze[col, row]
+                    walls: _matrix[col, row]
                 );
             }
         }
     }
 
-    private void SaveMaze()
+    private void SaveMatrix()
     {
         DateTime date = DateTime.Now;
 
         string parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())!.FullName;
-        string directoryPath = Path.Combine(parentDirectory, "Mazes", date.ToString("yyyy-MM-dd"));
-        string filePath = Path.Combine(directoryPath, $"maze_{date.ToString("HH_mm_ss_fff")}.png");
+        string directoryPath = Path.Combine(parentDirectory, "Matrices", date.ToString("yyyy-MM-dd"));
+        string filePath = Path.Combine(directoryPath, $"matrix_{date.ToString("HH_mm_ss_fff")}.png");
 
         try
         {
             Directory.CreateDirectory(directoryPath);
             TileSettings.bmp!.Save(filePath, ImageFormat.Png);
-            Console.WriteLine($"Maze saved to: {filePath}");
+            Console.WriteLine($"Matrix saved to: {filePath}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Failed to save the maze. Exception: {ex.Message}");
+            Console.WriteLine($"Failed to save the matrix. Exception: {ex.Message}");
         }
     }
 
