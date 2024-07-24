@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using static MazeMaker.TileSettings;
 namespace MazeMaker;
 
@@ -14,6 +15,7 @@ public struct ArrowTile : ITile
     private readonly UInt16 _yOrigin;
     private readonly SolidBrush _brush;
     private readonly Pen _pen;
+    private readonly SolidBrush _symbolBrush;
 
     public ArrowTile(
         Color fillColor,
@@ -25,6 +27,7 @@ public struct ArrowTile : ITile
         _fillColor = fillColor;
         _brush = new SolidBrush(fillColor);
         _pen = new Pen(Color.Red, BorderWidth);
+        _symbolBrush = new SolidBrush(Color.White);
         _xOrigin = xOrigin;
         _yOrigin = yOrigin;
         Draw();
@@ -35,48 +38,182 @@ public struct ArrowTile : ITile
     {
         if ((wallMask & TileType.North) != 0)
         {
-            UpArrow();
+            NorthArrow();
         }
         if ((wallMask & TileType.East) != 0)
         {
-            OpenEastWall();
+            EastArrow();
         }
         if ((wallMask & TileType.South) != 0)
         {
-            OpenSouthWall();
+            SouthArrow();
         }
         if ((wallMask & TileType.West) != 0)
         {
-            OpenWestWall();
+            WestArrow();
+        }
+        if ((wallMask & TileType.NorthEast) != 0)
+        {
+            WestArrow();
         }
     }
-    private void UpArrow()
-    {
+    private void NorthArrow()
+    {   
+        // Arrow bow point
         float x0 = _xOrigin + Width / 2;
-        float y0 = _yOrigin + Height - Height / 6;
-        
-        float x1 = _xOrigin + Width / 2;
-        float y1 = _yOrigin + Height / 6;
+        float y0 = _yOrigin + Height / 6;
 
-        float x2 = _xOrigin + Width / 6;
+        // Arrow port point
+        float x1 = _xOrigin + Width / 6;
+        float y1 = _yOrigin + Height / 2;
+
+        // Arrow starboard point
+        float x2 = _xOrigin + Width - (Width / 6);
         float y2 = _yOrigin + Height / 2;
-
-        float x3 = _xOrigin + Width - (Width / 6);
-        float y3 = _yOrigin + Height / 2;
-
-        float x4 = _xOrigin + Width / 2;
-        float y4 = _yOrigin + Height / 6;
 
         PointF[] points = new PointF[]
         {
             new PointF(x0, y0),
             new PointF(x1, y1),
             new PointF(x2, y2),
-            new PointF(x3, y3),
-            new PointF(x4, y4),
+            new PointF(x0, y0)
         };
 
-        g!.DrawLines(
+        g!.FillPolygon(
+            brush: _symbolBrush,
+            points: points
+        );
+    }
+
+    private void NorthEastArrow()
+    {
+        // Arrow bow point
+        float x0 = _xOrigin + Width / 2;
+        float y0 = _yOrigin + Height / 6;
+
+        // Arrow port point
+        float x1 = _xOrigin + Width / 6;
+        float y1 = _yOrigin + Height / 2;
+
+        // Arrow starboard point
+        float x2 = _xOrigin + Width - (Width / 6);
+        float y2 = _yOrigin + Height / 2;
+
+        PointF[] points = new PointF[]
+        {
+            new PointF(x0, y0),
+            new PointF(x1, y1),
+            new PointF(x2, y2),
+            new PointF(x0, y0)
+        };
+
+        g!.FillPolygon(
+            brush: _symbolBrush,
+            points: points
+        );
+
+        g.DrawPolygon(
+            pen: _pen,
+            points: points
+        );
+    }
+
+    private void EastArrow()
+    {
+        // Arrow bow point
+        float x0 = _xOrigin + Width - (Width / 6);
+        float y0 = _yOrigin + Height / 2;
+
+        // Arrow port point
+        float x1 = _xOrigin + Width / 2;
+        float y1 = _yOrigin + Height - (Height / 6);
+
+        // Arrow starboard point
+        float x2 = _xOrigin + Width / 2;
+        float y2 = _yOrigin + Height / 6;
+
+        PointF[] points = new PointF[]
+        {
+            new PointF(x0, y0),
+            new PointF(x1, y1),
+            new PointF(x2, y2),
+            new PointF(x0, y0)
+        };
+
+        g!.FillPolygon(
+            brush: _symbolBrush,
+            points: points
+        );
+
+        g.DrawPolygon(
+            pen: _pen,
+            points: points
+        );
+    }
+
+    private void SouthArrow()
+    {   
+        Console.WriteLine($"Entered the arrow south method");
+        // Arrow bow point
+        float x0 = _xOrigin + Width / 2;
+        float y0 = _yOrigin + Height - (Height / 6);
+
+        // Arrow port point
+        float x1 = _xOrigin + Width / 6;
+        float y1 = _yOrigin + Height / 2;
+
+        // Arrow starboard point
+        float x2 = _xOrigin + Width - (Width / 6);
+        float y2 = _yOrigin + Height / 2;
+
+        PointF[] points = new PointF[]
+        {
+            new PointF(x0, y0),
+            new PointF(x1, y1),
+            new PointF(x2, y2),
+            new PointF(x0, y0)
+        };
+
+        g!.FillPolygon(
+            brush: _symbolBrush,
+            points: points
+        );
+
+        g.DrawPolygon(
+            pen: _pen,
+            points: points
+        );
+    }
+
+    private void WestArrow()
+    {   
+        Console.WriteLine($"Entered the arrow south method");
+        // Arrow bow point
+        float x0 = _xOrigin + Width / 6;
+        float y0 = _yOrigin + Height / 2;
+
+        // Arrow port point
+        float x1 = _xOrigin + Width / 2;
+        float y1 = _yOrigin + Height - (Height / 6);
+
+        // Arrow starboard point
+        float x2 = _xOrigin + Width / 2;
+        float y2 = _yOrigin + Height / 6;
+
+        PointF[] points = new PointF[]
+        {
+            new PointF(x0, y0),
+            new PointF(x1, y1),
+            new PointF(x2, y2),
+            new PointF(x0, y0)
+        };
+
+        g!.FillPolygon(
+            brush: _symbolBrush,
+            points: points
+        );
+
+        g.DrawPolygon(
             pen: _pen,
             points: points
         );
@@ -112,39 +249,6 @@ public struct ArrowTile : ITile
             pen: _pen,
             points: points
         );
-    }
-
-    private void OpenEastWall()
-    {
-        // g!.FillRectangle(
-        //     brush:  _brush,
-        //     x:      _xOrigin + Width - BorderWidth,
-        //     y:      _yOrigin + BorderWidth,
-        //     width:  BorderWidth,
-        //     height: Height - BorderWidth * 2
-        // );
-    }
-
-    private void OpenSouthWall()
-    {
-        // g!.FillRectangle(
-        //     brush: _brush,
-        //     x:     _xOrigin + BorderWidth,
-        //     y:     _yOrigin + Height - BorderWidth,
-        //     width:  Width - BorderWidth * 2,
-        //     height: BorderWidth
-        // );
-    }
-
-    private void OpenWestWall()
-    {
-        // g!.FillRectangle(
-        //     brush:  _brush,
-        //     x:      _xOrigin,
-        //     y:      _yOrigin + BorderWidth,
-        //     width:  BorderWidth,
-        //     height: Height - BorderWidth * 2
-        // );
     }
 
     private void Draw()

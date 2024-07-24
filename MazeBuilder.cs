@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 namespace MazeMaker;
 public class MazeBuilder
@@ -50,7 +51,7 @@ public class MazeBuilder
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                _maze[col, row] = TileType.North;
+                _maze[col, row] = TileType.NorthEast;
             }
         }
     }
