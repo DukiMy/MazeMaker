@@ -50,7 +50,7 @@ public class MazeBuilder
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                _maze[col, row] = GetRandomEnumValue<TileType>();
+                _maze[col, row] = TileType.North;
             }
         }
     }
@@ -61,7 +61,7 @@ public class MazeBuilder
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                new MazeTile(
+                new ArrowTile(
                     fillColor: ColorTranslator.FromHtml("#888888"),
                     xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*col),
                     yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*row),

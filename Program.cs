@@ -5,10 +5,10 @@ static class Program
     static void Main()
     {
         MazeBuilder maze = new MazeBuilder(
-            tileSize: (width: 25, height: 25),
-            borderWidth: 1,
-            columns: 15,
-            rows: 15
+            tileSize: (width: 250, height: 250),
+            borderWidth: 4,
+            columns: 25,
+            rows: 25
         );
     }
 }
