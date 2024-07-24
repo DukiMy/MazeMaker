@@ -51,7 +51,7 @@ public class MazeBuilder
         {
             for (int row = 0; row < _rowMax; row++)
             {
-                _maze[col, row] = TileType.NorthEast;
+                _maze[col, row] = TileType.East;
             }
         }
     }

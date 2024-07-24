@@ -26,10 +26,10 @@ public struct MazeTile : ITile
         _xOrigin = xOrigin;
         _yOrigin = yOrigin;
         Draw();
-        DrawWalls(walls);
+        DrawTiles(walls);
     }
 
-    public void DrawWalls(TileType wallMask)
+    public void DrawTiles(TileType wallMask)
     {
         if ((wallMask & TileType.North) != 0)
         {
