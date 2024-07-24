@@ -82,7 +82,7 @@ public class MatrixBuilder
         UInt16 colsFromEdge = 1;
         UInt16 rowsFromEdge = 0;
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < (_colMax/2) ; i++)
         {
             for (int col = i; col < _colMax - i; col++)
             {
@@ -109,18 +109,16 @@ public class MatrixBuilder
                     fillColor: ColorTranslator.FromHtml("#888888"),
                     xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*(col)),
                     yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*(_rowMax - i - 1)),
-                    tileMask: _matrix[col, 24]
+                    tileMask: _matrix[col, _rowMax - i - 1]
                 );
             }
 
-            if (i == 1) break;
-
-            for (int row = _rowMax - 2; row >=1 ; row--)
+            for (int row = _rowMax - 2 - i; row >=1 + i ; row--)
             {
                 new NumberTile(
                     fillColor: ColorTranslator.FromHtml("#888888"),
-                    xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*(0)),
-                    yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*(row)),
+                    xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*(i)),
+                    yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*(row )),
                     tileMask: _matrix[0, row]
                 );
             }
