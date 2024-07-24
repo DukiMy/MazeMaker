@@ -28,7 +28,7 @@ public class MatrixBuilder
         );
 
         SetupMatrix();
-        BuildMatrix();
+        BuildEdgeFirst();
         SaveMatrix();
     }
 
@@ -45,7 +45,7 @@ public class MatrixBuilder
         }
     }
 
-    private void BuildMatrix()
+    private void BuildColumnFirst()
     {
         for (int col = 0; col < _colMax; col++)
         {
@@ -56,6 +56,72 @@ public class MatrixBuilder
                     xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*col),
                     yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*row),
                     tileMask: _matrix[col, row]
+                );
+            }
+        }
+    }
+
+    private void BuildRowFirst()
+    {
+        for (int row = 0; row < _rowMax; row++)
+        {
+            for (int col = 0; col < _colMax; col++)
+            {
+                new NumberTile(
+                    fillColor: ColorTranslator.FromHtml("#888888"),
+                    xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*col),
+                    yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*row),
+                    tileMask: _matrix[col, row]
+                );
+            }
+        }
+    }
+
+    private void BuildEdgeFirst()
+    {
+        UInt16 colsFromEdge = 1;
+        UInt16 rowsFromEdge = 0;
+
+        for (int i = 0; i < 2; i++)
+        {
+            for (int col = i; col < _colMax - i; col++)
+            {
+                new NumberTile(
+                    fillColor: ColorTranslator.FromHtml("#888888"),
+                    xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*(col)),
+                    yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*(i)),
+                    tileMask: _matrix[col, i]
+                );
+            }
+
+            for (int row = i+1; row < _rowMax - i; row++) {
+                new NumberTile(
+                    fillColor: ColorTranslator.FromHtml("#888888"),
+                    xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*(_colMax - i - 1)),
+                    yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*(row)),
+                    tileMask: _matrix[(_colMax - i - 1), row]
+                );
+            }
+
+            for (int col = _colMax - i - 1; col >= i; col--)
+            {
+                new NumberTile(
+                    fillColor: ColorTranslator.FromHtml("#888888"),
+                    xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*(col)),
+                    yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*(_rowMax - i - 1)),
+                    tileMask: _matrix[col, 24]
+                );
+            }
+
+            if (i == 1) break;
+
+            for (int row = _rowMax - 2; row >=1 ; row--)
+            {
+                new NumberTile(
+                    fillColor: ColorTranslator.FromHtml("#888888"),
+                    xOrigin: (UInt16)((_tileSize.width - _borderWidth + 0)*(0)),
+                    yOrigin: (UInt16)((_tileSize.height - _borderWidth + 0)*(row)),
+                    tileMask: _matrix[0, row]
                 );
             }
         }
